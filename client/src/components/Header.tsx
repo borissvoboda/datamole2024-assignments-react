@@ -30,6 +30,8 @@ type HeaderProps = {
 export const Header = (props: HeaderProps) => {
     const { children } = props;
     const [isFormVisible, setIsFormVisible] = useState<boolean>(false);
+    const [createdItem, setCreatedItem] = useState<any>({});
+    const [error, setError] = useState<any>({});
 
     const onItemAdd = (label: string) => {};
 
@@ -37,17 +39,31 @@ export const Header = (props: HeaderProps) => {
         setIsFormVisible((prev) => !prev);
     };
 
-    const onCreateItem = (inputValue) => {
-        console.log("Submit");
-        const requestOptions = {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ label: inputValue, isDone: false }),
-        };
-        fetch(`${apiUrl}/items`, requestOptions).then((response) => response.json());
+    const onCreateItem = async (inputValue) => {
+        try {
+            const response = await fetch(`${apiUrl}/items`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    label: inputValue,
+                    isDone: false,
+                }),
+            });
 
-        // setInputValue("");
+            if (response.ok) {
+                const data = await response.json();
+                setCreatedItem(data);
+            } else {
+                setError(`Error: ${response.status} ${response.statusText}`);
+            }
+        } catch (err) {
+            setError(`Network Error: ${err.message}`);
+        }
     };
+
+    console.log(createdItem);
 
     return (
         <StyledDiv>
