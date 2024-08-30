@@ -15,9 +15,21 @@ export type ListItemType = {
     id: number;
 };
 
-export const List = () => {
-    const [items, setItems] = useState<ListItemType[] | []>();
+type ListProps = {
+    onTodosChange: (t: number, d: number) => void;
+};
+
+export const List = ({ onTodosChange }: ListProps) => {
+    const [items, setItems] = useState<ListItemType[]>([]);
     const [error, setError] = useState<any>();
+
+    // const onTodosChange = props;
+
+    useEffect(() => {
+        const doneItems = items.filter((item) => item.isDone).length;
+        const todoItems = items.filter((item) => !item.isDone).length;
+        onTodosChange(todoItems, doneItems);
+    }, [items]);
 
     useEffect(() => {
         fetch(`${apiUrl}/items`)
@@ -76,6 +88,7 @@ export const List = () => {
 
     return (
         <StyledDiv>
+            {todoItems.length} | {doneItems.length}
             {todoItems.length > 0 ? mapper(todoItems) : <div>No todo items available</div>}
             {doneItems.length > 0 ? mapper(doneItems) : <div>No done items available</div>}
         </StyledDiv>
