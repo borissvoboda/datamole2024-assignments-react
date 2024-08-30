@@ -1,6 +1,7 @@
 import { CheckIcon, Cross1Icon } from "@radix-ui/react-icons";
 import React, { useState } from "react";
 import styled from "styled-components";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 import { Input } from "./Input";
 
@@ -19,6 +20,16 @@ export const Form = (props: FormProps) => {
 
     const [inputValue, setInputValue] = useState(initialValue);
 
+    console.log(inputValue);
+
+    let isNotEmpty = true;
+
+    if (!inputValue) {
+        isNotEmpty = true;
+    } else {
+        isNotEmpty = false;
+    }
+
     return (
         <FormStyled
             onSubmit={(e) => {
@@ -30,7 +41,7 @@ export const Form = (props: FormProps) => {
             }}
         >
             <Input value={inputValue} onValueChange={(value) => setInputValue(value)} />
-            <button type={"submit"}>
+            <button type={"submit"} disabled={isNotEmpty}>
                 <CheckIcon />
             </button>
             <button type={"reset"}>
