@@ -27,16 +27,20 @@ export const List = (props: ListProps) => {
     const { onTodosChange, addNewTodo } = props;
 
     useEffect(() => {
-        const doneItems = items.filter((item) => item.isDone).length;
-        const todoItems = items.filter((item) => !item.isDone).length;
-        onTodosChange(todoItems, doneItems);
-    }, [addNewTodo]);
-
-    useEffect(() => {
         fetch(`${apiUrl}/items`)
             .then((response) => response.json())
             .then((data) => setItems(data.sort((a: ListItemType, b: ListItemType) => b.createdAt - a.createdAt)));
+    }, []);
+
+    useEffect(() => {
+        const doneItems = items.filter((item) => item.isDone).length;
+        const todoItems = items.filter((item) => !item.isDone).length;
+        onTodosChange(todoItems, doneItems);
     }, [items]);
+
+    useEffect(() => {
+        setItems([addNewTodo, ...items]);
+    }, [addNewTodo]);
 
     const onItemDelete = async (id) => {
         try {
@@ -89,7 +93,6 @@ export const List = (props: ListProps) => {
 
     return (
         <StyledDiv>
-            {todoItems.length} | {doneItems.length}
             {todoItems.length > 0 ? mapper(todoItems) : <div>No todo items available</div>}
             {doneItems.length > 0 ? mapper(doneItems) : <div>No done items available</div>}
         </StyledDiv>
