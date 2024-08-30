@@ -14,6 +14,7 @@ const Label = styled.label`
 `;
 
 export type LiteeItemProp = {
+    key: number;
     label: string;
     isDone: boolean;
     onItemLabelEdit: (label: string) => void;
@@ -22,7 +23,7 @@ export type LiteeItemProp = {
 };
 
 export const ListItem = (props: LiteeItemProp) => {
-    const { label, isDone, onItemLabelEdit, onItemDoneToggle, onItemDelete } = props;
+    const { key, label, isDone, onItemLabelEdit, onItemDoneToggle, onItemDelete } = props;
 
     return (
         <StyledDiv>

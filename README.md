@@ -48,7 +48,7 @@ _Fix all other bugs and visual imperfections you find._
 
 -   [x] **F1**: Default values in `Footer`
     -   Modify the counters in `Footer` to show 0 when no value(s) are passed.
--   [ ] **F2**: Load todo items
+-   [x] **F2**: Load todo items
     -   After opening the application, todo items should be loaded from the server
     -   The todo items should be displayed in the `List` component.
 -   [ ] **F3**: Add a todo item
