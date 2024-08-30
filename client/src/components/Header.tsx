@@ -2,6 +2,7 @@ import { PlusIcon } from "@radix-ui/react-icons";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Form } from "./form";
+import { ListItemType } from "./List";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const StyledDiv = styled.header`
@@ -24,16 +25,14 @@ const StyledDiv = styled.header`
 
 type HeaderProps = {
     children: React.ReactNode;
-    onItemAdd: (label: string) => void;
+    onItemAdd: (newItem: ListItemType) => void;
 };
 
 export const Header = (props: HeaderProps) => {
-    const { children } = props;
+    const { onItemAdd, children } = props;
     const [isFormVisible, setIsFormVisible] = useState<boolean>(false);
     const [createdItem, setCreatedItem] = useState<any>({});
     const [error, setError] = useState<any>({});
-
-    const onItemAdd = (label: string) => {};
 
     const toggleFormVisibility = () => {
         setIsFormVisible((prev) => !prev);
@@ -55,6 +54,7 @@ export const Header = (props: HeaderProps) => {
             if (response.ok) {
                 const data = await response.json();
                 setCreatedItem(data);
+                onItemAdd(data);
             } else {
                 setError(`Error: ${response.status} ${response.statusText}`);
             }
@@ -71,7 +71,7 @@ export const Header = (props: HeaderProps) => {
             <button onClick={toggleFormVisibility}>
                 <PlusIcon />
             </button>
-            {isFormVisible ? <Form onSubmit={onCreateItem} /> : ""}
+            {isFormVisible ? <Form onSubmit={onCreateItem} onCancel={toggleFormVisibility} /> : ""}
         </StyledDiv>
     );
 };

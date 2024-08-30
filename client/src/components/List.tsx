@@ -17,25 +17,26 @@ export type ListItemType = {
 
 type ListProps = {
     onTodosChange: (t: number, d: number) => void;
+    addNewTodo: ListItemType | {};
 };
 
-export const List = ({ onTodosChange }: ListProps) => {
+export const List = (props: ListProps) => {
     const [items, setItems] = useState<ListItemType[]>([]);
     const [error, setError] = useState<any>();
 
-    // const onTodosChange = props;
+    const { onTodosChange, addNewTodo } = props;
 
     useEffect(() => {
         const doneItems = items.filter((item) => item.isDone).length;
         const todoItems = items.filter((item) => !item.isDone).length;
         onTodosChange(todoItems, doneItems);
-    }, [items]);
+    }, [addNewTodo]);
 
     useEffect(() => {
         fetch(`${apiUrl}/items`)
             .then((response) => response.json())
             .then((data) => setItems(data.sort((a: ListItemType, b: ListItemType) => b.createdAt - a.createdAt)));
-    }, []);
+    }, [items]);
 
     const onItemDelete = async (id) => {
         try {
