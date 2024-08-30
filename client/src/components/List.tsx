@@ -47,8 +47,8 @@ export const List = () => {
     // TODO:
     const func = () => {};
 
-    let doneItems = [];
-    let todoItems = [];
+    let doneItems: ListItemType | [] = [];
+    let todoItems: ListItemType | [] = [];
 
     if (items) {
         items.filter((item) => {
