@@ -12,7 +12,7 @@ export type ListItemType = {
     label: string;
     isDone: boolean;
     createdAt: string;
-    id: number;
+    id: string;
 };
 
 export const List = () => {
@@ -32,7 +32,8 @@ export const List = () => {
             {items ? (
                 items.map((item) => (
                     <ListItem
-                        key={item.id}
+                        key={`${item.id}_${item.createdAt}`}
+                        id={`${item.id}_${item.createdAt}`}
                         label={item.label}
                         isDone={item.isDone}
                         onItemLabelEdit={func}

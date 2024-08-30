@@ -14,7 +14,7 @@ const Label = styled.label`
 `;
 
 export type LiteeItemProp = {
-    key: number;
+    id: string;
     label: string;
     isDone: boolean;
     onItemLabelEdit: (label: string) => void;
@@ -23,10 +23,10 @@ export type LiteeItemProp = {
 };
 
 export const ListItem = (props: LiteeItemProp) => {
-    const { key, label, isDone, onItemLabelEdit, onItemDoneToggle, onItemDelete } = props;
+    const { id, label, isDone, onItemLabelEdit, onItemDoneToggle, onItemDelete } = props;
 
     return (
-        <StyledDiv>
+        <StyledDiv key={id}>
             <Checkbox checked={isDone} onCheckedChange={onItemDoneToggle} />
             <Label>{label}</Label>
             <button>
