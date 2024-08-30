@@ -11,39 +11,73 @@ const StyledDiv = styled.div`
 export type ListItemType = {
     label: string;
     isDone: boolean;
-    createdAt: string;
-    id: string;
+    createdAt: number;
+    id: number;
 };
 
 export const List = () => {
-    const [items, setItems] = useState<ListItemType[]>();
+    const [items, setItems] = useState<ListItemType[] | []>();
+    const [error, setError] = useState<any>();
 
     useEffect(() => {
         fetch(`${apiUrl}/items`)
             .then((response) => response.json())
-            .then((data) => setItems(data));
+            .then((data) => setItems(data.sort((a: ListItemType, b: ListItemType) => b.createdAt - a.createdAt)));
     }, []);
+
+    const onItemDelete = async (id) => {
+        try {
+            const response = await fetch(`${apiUrl}/items/${id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            if (response.ok) {
+                setItems((prevItems) => prevItems.filter((item) => item.id !== id));
+            } else {
+                setError(`Error: ${response.status} ${response.statusText}`);
+            }
+        } catch (err) {
+            setError(`Network Error: ${err.message}`);
+        }
+    };
 
     // TODO:
     const func = () => {};
 
+    let doneItems = [];
+    let todoItems = [];
+
+    if (items) {
+        items.filter((item) => {
+            if (item.isDone == true) {
+                doneItems.push(item);
+            } else {
+                todoItems.push(item);
+            }
+        });
+    }
+
+    const mapper = (arr: ListItemType[]) => {
+        return arr.map((item) => (
+            <ListItem
+                key={`${item.id}_${item.createdAt}`}
+                id={item.id}
+                label={item.label}
+                isDone={item.isDone}
+                onItemLabelEdit={func}
+                onItemDoneToggle={func}
+                onItemDelete={onItemDelete}
+            />
+        ));
+    };
+
     return (
         <StyledDiv>
-            {items ? (
-                items.map((item) => (
-                    <ListItem
-                        key={`${item.id}_${item.createdAt}`}
-                        id={`${item.id}_${item.createdAt}`}
-                        label={item.label}
-                        isDone={item.isDone}
-                        onItemLabelEdit={func}
-                        onItemDoneToggle={func}
-                        onItemDelete={func}
-                    />
-                ))
-            ) : (
-                <div>No items available</div>
-            )}
+            {todoItems.length > 0 ? mapper(todoItems) : <div>No todo items available</div>}
+            {doneItems.length > 0 ? mapper(doneItems) : <div>No done items available</div>}
         </StyledDiv>
     );
 };

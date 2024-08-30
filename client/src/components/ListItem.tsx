@@ -14,25 +14,25 @@ const Label = styled.label`
 `;
 
 export type LiteeItemProp = {
-    id: string;
+    id: number;
     label: string;
     isDone: boolean;
     onItemLabelEdit: (label: string) => void;
     onItemDoneToggle: (isDone: boolean) => void;
-    onItemDelete: () => void;
+    onItemDelete: (id: number) => void;
 };
 
 export const ListItem = (props: LiteeItemProp) => {
     const { id, label, isDone, onItemLabelEdit, onItemDoneToggle, onItemDelete } = props;
 
     return (
-        <StyledDiv key={id}>
+        <StyledDiv>
             <Checkbox checked={isDone} onCheckedChange={onItemDoneToggle} />
             <Label>{label}</Label>
-            <button>
+            <button onClick={() => onItemDelete(id)}>
                 <TrashIcon />
             </button>
-            <button onClick={() => onItemDelete()}>
+            <button>
                 <Pencil1Icon />
             </button>
         </StyledDiv>
