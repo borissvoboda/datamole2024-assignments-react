@@ -11,6 +11,10 @@ const FooterStyled = styled.footer`
     border-color: ${(props) => props.theme.colors.olive6};
 `;
 
+const ItemStyled = styled.div`
+    flex: 1;
+`;
+
 type FooterProps = {
     todoItems?: number;
     doneItems?: number;
@@ -21,8 +25,8 @@ export const Footer = (props: FooterProps) => {
 
     return (
         <FooterStyled>
-            Todo: {todoItems || 0}
-            Done: {doneItems || 0}
+            <ItemStyled>Todo: {todoItems || 0}</ItemStyled>
+            <ItemStyled>Done: {doneItems || 0}</ItemStyled>
         </FooterStyled>
     );
 };
