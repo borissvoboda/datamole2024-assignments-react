@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { ListItem } from "./ListItem";
+
+import { useAppSelector, useAppDispatch } from ".././redux/hooks";
+
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const StyledDiv = styled.div`
@@ -25,6 +28,8 @@ export const List = (props: ListProps) => {
     const [error, setError] = useState<any>();
 
     const { onTodosChange, addNewTodo } = props;
+
+    const todos = useAppSelector((state) => state.todos);
 
     useEffect(() => {
         fetch(`${apiUrl}/items`)
@@ -93,6 +98,7 @@ export const List = (props: ListProps) => {
 
     return (
         <StyledDiv>
+            Todos: {todos[0].label}
             {todoItems.length > 0 ? mapper(todoItems) : <div>No todo items available</div>}
             {doneItems.length > 0 ? mapper(doneItems) : <div>No done items available</div>}
         </StyledDiv>

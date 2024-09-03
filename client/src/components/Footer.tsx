@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import { useAppSelector } from ".././redux/hooks";
+
 const FooterStyled = styled.footer`
     display: flex;
 
@@ -23,8 +25,11 @@ type FooterProps = {
 export const Footer = (props: FooterProps) => {
     const { todoItems, doneItems } = props;
 
+    const todos = useAppSelector((state) => state.todos);
+
     return (
         <FooterStyled>
+            <div>Todos total: {todos.length}</div>
             <ItemStyled>Todo: {todoItems || 0}</ItemStyled>
             <ItemStyled>Done: {doneItems || 0}</ItemStyled>
         </FooterStyled>
