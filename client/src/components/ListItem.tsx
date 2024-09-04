@@ -5,7 +5,7 @@ import axios from "axios";
 import { Checkbox } from "./Checkbox";
 import { Form } from "./form";
 
-import { editTodo } from "../redux/todosSlice";
+import { editTodo, completeTodo } from "../redux/todosSlice";
 import { useAppDispatch } from ".././redux/hooks";
 
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -28,13 +28,13 @@ export type LiteeItemProp = {
     label: string;
     isDone: boolean;
     onItemLabelEdit: (label: string) => void;
-    onItemDoneToggle: (isDone: boolean) => void;
     onItemDelete: (id: number) => void;
 };
 
 export const ListItem = (props: LiteeItemProp) => {
-    const { id, label, isDone, onItemLabelEdit, onItemDoneToggle, onItemDelete } = props;
+    const { id, label, onItemLabelEdit, onItemDelete } = props;
     const [editMode, setEditMode] = useState<boolean>(false);
+    const [isDone, setIsDone] = useState<boolean>(props.isDone);
     const [dynamicLabel, setDynamicLabel] = useState<string>(props.label);
 
     const dispatch = useAppDispatch();
@@ -54,6 +54,17 @@ export const ListItem = (props: LiteeItemProp) => {
             .catch((error) => console.error(error));
 
         setEditMode(false);
+    };
+
+    const onItemDoneToggle = (e: boolean) => {
+        axios
+            .patch(`${apiUrl}/items/${id}`, { isDone: e })
+            .then((response) => {
+                dispatch(completeTodo(response.data));
+                setIsDone(e);
+                console.log(response.data);
+            })
+            .catch((error) => console.error(error));
     };
 
     const StaticMode = () => {
@@ -80,7 +91,12 @@ export const ListItem = (props: LiteeItemProp) => {
 
     return (
         <StyledDiv>
-            <Checkbox checked={isDone} onCheckedChange={onItemDoneToggle} />
+            <Checkbox
+                checked={isDone}
+                onCheckedChange={(e) => {
+                    onItemDoneToggle(!!e);
+                }}
+            />
             {editMode ? <EditMode /> : <StaticMode />}
         </StyledDiv>
     );

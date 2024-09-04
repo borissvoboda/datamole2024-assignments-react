@@ -73,3 +73,7 @@ On submit, the ListItem uses PATCH to change label in the API and editTodo in Re
 I have added a cancel function.
 I have added Axios to take care of the fetching.
 I have added also the "dynamicLabel" in a hope that it will fix the brief moment after submitting the label change, where you still can see the old label. This didn't work yet, but I will keep it here for a moment.
+
+# 5. Todo COMPLETE toggle
+
+I have added todo complition functionality. By now I am almost sure that the fetching / status changing logic was meant to be all in the List component (or maybe some separate component?). In some sense I agree, the logic should be in one place. On the other hand, editing / completing / deleting(!) somehow fits in the ListItem scope.
