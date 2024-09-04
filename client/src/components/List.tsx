@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { ListItem } from "./ListItem";
-// Redux
 import { selectTodos, setTodos } from "../redux/todosSlice";
 import { useAppSelector, useAppDispatch } from ".././redux/hooks";
 
@@ -19,21 +18,14 @@ export type ListItemType = {
     id: number;
 };
 
-type ListProps = {
-    onTodosChange: (t: number, d: number) => void;
-    addNewTodo: ListItemType | {};
-};
-
 export const List = () => {
     const [items, setItems] = useState<ListItemType[]>([]);
     const [error, setError] = useState<any>();
 
-    // const { addNewTodo } = props;
     const dispatch = useAppDispatch();
 
     const todos = useAppSelector(selectTodos);
 
-    // Fetching items
     useEffect(() => {
         fetch(`${apiUrl}/items`)
             .then((response) => response.json())
@@ -42,12 +34,6 @@ export const List = () => {
                 dispatch(setTodos(data.sort((a: ListItemType, b: ListItemType) => b.createdAt - a.createdAt)));
             });
     }, []);
-
-    // useEffect(() => {
-    //     const doneItems = items.filter((item) => item.isDone).length;
-    //     const todoItems = items.filter((item) => !item.isDone).length;
-    //     onTodosChange(todoItems, doneItems);
-    // }, [items]);
 
     const onItemDelete = async (id) => {
         try {
