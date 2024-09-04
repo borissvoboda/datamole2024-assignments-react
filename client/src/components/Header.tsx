@@ -5,6 +5,9 @@ import { Form } from "./form";
 import { ListItemType } from "./List";
 const apiUrl = import.meta.env.VITE_API_URL;
 
+import { addTodo } from "../redux/todosSlice";
+import { useAppDispatch } from ".././redux/hooks";
+
 const StyledDiv = styled.header`
     display: flex;
 
@@ -25,14 +28,14 @@ const StyledDiv = styled.header`
 
 type HeaderProps = {
     children: React.ReactNode;
-    onItemAdd: (newItem: ListItemType) => void;
 };
 
 export const Header = (props: HeaderProps) => {
-    const { onItemAdd, children } = props;
+    const { children } = props;
     const [isFormVisible, setIsFormVisible] = useState<boolean>(false);
-    const [createdItem, setCreatedItem] = useState<any>({});
     const [error, setError] = useState<any>({});
+
+    const dispatch = useAppDispatch();
 
     const toggleFormVisibility = () => {
         setIsFormVisible((prev) => !prev);
@@ -53,8 +56,7 @@ export const Header = (props: HeaderProps) => {
 
             if (response.ok) {
                 const data = await response.json();
-                setCreatedItem(data);
-                onItemAdd(data);
+                dispatch(addTodo(data));
             } else {
                 setError(`Error: ${response.status} ${response.statusText}`);
             }
@@ -62,8 +64,6 @@ export const Header = (props: HeaderProps) => {
             setError(`Network Error: ${err.message}`);
         }
     };
-
-    console.log(createdItem);
 
     return (
         <StyledDiv>

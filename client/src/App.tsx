@@ -8,15 +8,11 @@ import { ThemeProvider } from "./components/providers/ThemeProvider";
 import { ListItemType } from "./components/List";
 
 export const App = () => {
-    const handleItemAdd = (newItem: ListItemType) => {
-        // setNewItem(newItem);
-    };
-
     return (
         <ThemeProvider>
             <Container>
                 <Layout>
-                    <Header onItemAdd={handleItemAdd}>To Do app</Header>
+                    <Header>To Do app</Header>
                     <List />
                     <Footer />
                 </Layout>

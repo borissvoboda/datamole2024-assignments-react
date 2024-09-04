@@ -60,3 +60,8 @@ We import reducer "setTodos" from todosSlice.
 ### 3.6.1. useAppSelector correction
 
 I have corrected useAppSelector, calling selectTodos directly. The first way const todos = useAppSelector((state) => state.todos); if used in different places, would lead to duplicit code and no cetralized way for changing the selector. With the help of ChatGPT I have found out, that the former approach would not memoize the value, it seems.
+
+### 3.6.2. adding single todo to redux
+
+New single todo will be posted and the response (with timestamp) will be added to the beginning of the redux state (the newest one). This way we will update the DB state and the UI state, without the need of fetching the WHOLE array of todos. AND, since the redux state will be updated (copy of a new state is created), this causes the List to rerender and show the new item, without a need of special treatment.
+Having the fetching don in the header is not the ideal from the structural/logical perspective, but I will leave it there for now.
