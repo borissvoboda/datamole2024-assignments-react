@@ -8,15 +8,8 @@ import { ThemeProvider } from "./components/providers/ThemeProvider";
 import { ListItemType } from "./components/List";
 
 export const App = () => {
-    const [todos, setTodos] = useState<{ t: number; d: number }>({ t: 0, d: 0 });
-    const [newItem, setNewItem] = useState<ListItemType | {}>({});
-
-    const handleCounter = (t: number, d: number) => {
-        setTodos({ t, d });
-    };
-
     const handleItemAdd = (newItem: ListItemType) => {
-        setNewItem(newItem);
+        // setNewItem(newItem);
     };
 
     return (
@@ -24,8 +17,8 @@ export const App = () => {
             <Container>
                 <Layout>
                     <Header onItemAdd={handleItemAdd}>To Do app</Header>
-                    <List onTodosChange={handleCounter} addNewTodo={newItem} />
-                    <Footer todoItems={todos.t} doneItems={todos.d} />
+                    <List />
+                    <Footer />
                 </Layout>
             </Container>
         </ThemeProvider>

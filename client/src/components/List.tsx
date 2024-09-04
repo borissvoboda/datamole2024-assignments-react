@@ -24,11 +24,11 @@ type ListProps = {
     addNewTodo: ListItemType | {};
 };
 
-export const List = (props: ListProps) => {
+export const List = () => {
     const [items, setItems] = useState<ListItemType[]>([]);
     const [error, setError] = useState<any>();
 
-    const { onTodosChange, addNewTodo } = props;
+    // const { addNewTodo } = props;
     const dispatch = useAppDispatch();
 
     const todos = useAppSelector(selectTodos);

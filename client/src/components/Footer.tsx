@@ -18,12 +18,7 @@ const ItemStyled = styled.div`
     flex: 1;
 `;
 
-type FooterProps = {
-    todoItems?: number;
-    doneItems?: number;
-};
-
-export const Footer = (props: FooterProps) => {
+export const Footer = () => {
     const todos = useAppSelector(selectTodos);
 
     let doneCounter = 0;
