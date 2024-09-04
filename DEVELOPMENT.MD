@@ -47,7 +47,16 @@ TodoSlice itself would have the addTodo reducer
 
 Following the documentation, I use hooks for selecting (later dispatching). Selecting means the returning the value of particular piece of redux store.
 
-## 3.5 using hooks
+## 3.5. using hooks
 
 I have added useAppSelector to the List component; where the todos state will be mapped.
 I have also added this selector to the Footer, where (for the moment) I will return the length of todos. This may change a bit; maybe I should filter NOT DONE todos and done todos and save the count into the store; but it is also possible to filter them in footer and show the count for both.
+
+## 3.6. functionality for adding todos
+
+While there are definitely different ways, or different components that could do a fetch, for now I will use Lists.tsx for fetching; because we already have the infrastructure for that. So on the first render we would use useEffect for fetching and updating
+We import reducer "setTodos" from todosSlice.
+
+### 3.6.1. useAppSelector correction
+
+I have corrected useAppSelector, calling selectTodos directly. The first way const todos = useAppSelector((state) => state.todos); if used in different places, would lead to duplicit code and no cetralized way for changing the selector. With the help of ChatGPT I have found out, that the former approach would not memoize the value, it seems.

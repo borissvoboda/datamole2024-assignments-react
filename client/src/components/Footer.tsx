@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
+import { selectTodos } from "../redux/todosSlice";
 import { useAppSelector } from ".././redux/hooks";
 
 const FooterStyled = styled.footer`
@@ -23,15 +24,25 @@ type FooterProps = {
 };
 
 export const Footer = (props: FooterProps) => {
-    const { todoItems, doneItems } = props;
+    const todos = useAppSelector(selectTodos);
 
-    const todos = useAppSelector((state) => state.todos);
+    let doneCounter = 0;
+    let todoCounter = 0;
+
+    if (todos) {
+        todos.filter((item) => {
+            if (item.isDone == true) {
+                doneCounter++;
+            } else {
+                todoCounter++;
+            }
+        });
+    }
 
     return (
         <FooterStyled>
-            <div>Todos total: {todos.length}</div>
-            <ItemStyled>Todo: {todoItems || 0}</ItemStyled>
-            <ItemStyled>Done: {doneItems || 0}</ItemStyled>
+            <ItemStyled>Todo: {todoCounter}</ItemStyled>
+            <ItemStyled>Done: {doneCounter}</ItemStyled>
         </FooterStyled>
     );
 };

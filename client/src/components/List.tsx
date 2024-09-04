@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { ListItem } from "./ListItem";
-
+// Redux
+import { selectTodos, setTodos } from "../redux/todosSlice";
 import { useAppSelector, useAppDispatch } from ".././redux/hooks";
 
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -28,24 +29,25 @@ export const List = (props: ListProps) => {
     const [error, setError] = useState<any>();
 
     const { onTodosChange, addNewTodo } = props;
+    const dispatch = useAppDispatch();
 
-    const todos = useAppSelector((state) => state.todos);
+    const todos = useAppSelector(selectTodos);
 
+    // Fetching items
     useEffect(() => {
         fetch(`${apiUrl}/items`)
             .then((response) => response.json())
-            .then((data) => setItems(data.sort((a: ListItemType, b: ListItemType) => b.createdAt - a.createdAt)));
+            .then((data) => {
+                console.log(data);
+                dispatch(setTodos(data.sort((a: ListItemType, b: ListItemType) => b.createdAt - a.createdAt)));
+            });
     }, []);
 
-    useEffect(() => {
-        const doneItems = items.filter((item) => item.isDone).length;
-        const todoItems = items.filter((item) => !item.isDone).length;
-        onTodosChange(todoItems, doneItems);
-    }, [items]);
-
-    useEffect(() => {
-        setItems([addNewTodo, ...items]);
-    }, [addNewTodo]);
+    // useEffect(() => {
+    //     const doneItems = items.filter((item) => item.isDone).length;
+    //     const todoItems = items.filter((item) => !item.isDone).length;
+    //     onTodosChange(todoItems, doneItems);
+    // }, [items]);
 
     const onItemDelete = async (id) => {
         try {
@@ -72,8 +74,8 @@ export const List = (props: ListProps) => {
     let doneItems: ListItemType | [] = [];
     let todoItems: ListItemType | [] = [];
 
-    if (items) {
-        items.filter((item) => {
+    if (todos) {
+        todos.filter((item) => {
             if (item.isDone == true) {
                 doneItems.push(item);
             } else {
@@ -98,7 +100,6 @@ export const List = (props: ListProps) => {
 
     return (
         <StyledDiv>
-            Todos: {todos[0].label}
             {todoItems.length > 0 ? mapper(todoItems) : <div>No todo items available</div>}
             {doneItems.length > 0 ? mapper(doneItems) : <div>No done items available</div>}
         </StyledDiv>
