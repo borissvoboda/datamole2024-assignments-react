@@ -65,3 +65,11 @@ I have corrected useAppSelector, calling selectTodos directly. The first way con
 
 New single todo will be posted and the response (with timestamp) will be added to the beginning of the redux state (the newest one). This way we will update the DB state and the UI state, without the need of fetching the WHOLE array of todos. AND, since the redux state will be updated (copy of a new state is created), this causes the List to rerender and show the new item, without a need of special treatment.
 Having the fetching don in the header is not the ideal from the structural/logical perspective, but I will leave it there for now.
+
+# 4. Editing todo
+
+In the ListItem I have added a conditional rendering of a label or Form.
+On submit, the ListItem uses PATCH to change label in the API and editTodo in Redux.
+I have added a cancel function.
+I have added Axios to take care of the fetching.
+I have added also the "dynamicLabel" in a hope that it will fix the brief moment after submitting the label change, where you still can see the old label. This didn't work yet, but I will keep it here for a moment.

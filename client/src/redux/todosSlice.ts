@@ -20,11 +20,22 @@ export const todosSlice = createSlice({
         addTodo: (state, action: PayloadAction<TodoItemType>) => {
             state.unshift(action.payload);
         },
+        editTodo: (state, action: PayloadAction<TodoItemType>) => {
+            // without taking advantage of immer; have to process every el of arr
+            // return state.map((item) =>
+            //     item.id === action.payload.id ? { ...item, label: action.payload.label } : item
+            // );
+
+            const todo = state.find((item) => item.id === action.payload.id);
+            if (todo) {
+                todo.label = action.payload.label;
+            }
+        },
     },
 });
 
 export const selectTodos = (state: RootState) => state.todos;
 
-export const { setTodos, addTodo } = todosSlice.actions;
+export const { setTodos, addTodo, editTodo } = todosSlice.actions;
 
 export default todosSlice.reducer;
