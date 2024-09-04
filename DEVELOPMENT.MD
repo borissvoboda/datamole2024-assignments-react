@@ -77,3 +77,8 @@ I have added also the "dynamicLabel" in a hope that it will fix the brief moment
 # 5. Todo COMPLETE toggle
 
 I have added todo complition functionality. By now I am almost sure that the fetching / status changing logic was meant to be all in the List component (or maybe some separate component?). In some sense I agree, the logic should be in one place. On the other hand, editing / completing / deleting(!) somehow fits in the ListItem scope.
+
+# 6. RESTRICTION - PROPS
+
+I have just realized the restriction "Do not modify the API (props) of the provided components."
+TODO: For the moment it would be impractical not to pass "id" prop to the ListItem. But if all the filtering is done on the List level, then ID may not be needed in the ListItem.

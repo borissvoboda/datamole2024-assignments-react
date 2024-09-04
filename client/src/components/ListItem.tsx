@@ -28,11 +28,12 @@ export type LiteeItemProp = {
     label: string;
     isDone: boolean;
     onItemLabelEdit: (label: string) => void;
-    onItemDelete: (id: number) => void;
+    onItemDoneToggle: (isDone: boolean) => void;
+    onItemDelete: () => void;
 };
 
 export const ListItem = (props: LiteeItemProp) => {
-    const { id, label, onItemLabelEdit, onItemDelete } = props;
+    const { id, label, onItemLabelEdit, onItemDoneToggle, onItemDelete } = props;
     const [editMode, setEditMode] = useState<boolean>(false);
     const [isDone, setIsDone] = useState<boolean>(props.isDone);
     const [dynamicLabel, setDynamicLabel] = useState<string>(props.label);
@@ -56,7 +57,7 @@ export const ListItem = (props: LiteeItemProp) => {
         setEditMode(false);
     };
 
-    const onItemDoneToggle = (e: boolean) => {
+    const itemDoneToggle = (e: boolean) => {
         axios
             .patch(`${apiUrl}/items/${id}`, { isDone: e })
             .then((response) => {
@@ -94,7 +95,7 @@ export const ListItem = (props: LiteeItemProp) => {
             <Checkbox
                 checked={isDone}
                 onCheckedChange={(e) => {
-                    onItemDoneToggle(!!e);
+                    itemDoneToggle(!!e);
                 }}
             />
             {editMode ? <EditMode /> : <StaticMode />}
