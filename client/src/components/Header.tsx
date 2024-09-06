@@ -28,6 +28,7 @@ const StyledDiv = styled.header`
 
 type HeaderProps = {
     children: React.ReactNode;
+    onItemAdd: (label: string) => void;
 };
 
 export const Header = (props: HeaderProps) => {
