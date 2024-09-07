@@ -25,6 +25,11 @@ const StaticContainer = styled.div`
 
 const ButtonContainer = styled.div`
     display: flex;
+    visibility: hidden;
+
+    ${StaticContainer}:hover & {
+        visibility: visible;
+    }
 `;
 
 const Label = styled.label`
