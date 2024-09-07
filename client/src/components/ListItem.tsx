@@ -21,6 +21,10 @@ const StaticContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     width: 100%;
+
+    &:hover {
+        background-color: ${(props) => props.theme.colors.lime3};
+    }
 `;
 
 const ButtonContainer = styled.div`
