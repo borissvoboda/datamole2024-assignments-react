@@ -94,3 +94,7 @@ I wasn't sure about the intended desing of all buttons. I guess the exercise was
 # 9. Action buttons align
 
 List items, align in static and edit mode. Just realized, that multiple items can be in "edit", which is bad UX.
+
+# 10. Action buttons visibility
+
+Action buttons visibility was don via css and styled components.

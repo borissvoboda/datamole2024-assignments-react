@@ -80,7 +80,7 @@ _Fix all other bugs and visual imperfections you find._
     -   The "add" button should be aligned to the right in the `Header` component.
 -   [x] **UI2**: `ListItem` actions alignment
     -   Action buttons in the `ListItem` component should be aligned to the right.
--   [ ] **UI3**: `ListItem` actions visibility
+-   [x] **UI3**: `ListItem` actions visibility
     -   Action buttons in the `ListItem` component should be visible only when hovering over the `ListItem`.
 
 #### Stories (optional tasks)
