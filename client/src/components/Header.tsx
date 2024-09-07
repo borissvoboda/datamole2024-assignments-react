@@ -12,6 +12,7 @@ import { useAppDispatch } from ".././redux/hooks";
 const StyledDiv = styled.header`
     display: flex;
     vertical-align: middle;
+    justify-content: space-between;
 
     button {
         all: unset;

@@ -76,7 +76,7 @@ _Fix all other bugs and visual imperfections you find._
 
 #### Styling
 
--   [ ] **UI1**: `Header` "add" button alignment
+-   [x] **UI1**: `Header` "add" button alignment
     -   The "add" button should be aligned to the right in the `Header` component.
 -   [ ] **UI2**: `ListItem` actions alignment
     -   Action buttons in the `ListItem` component should be aligned to the right.
