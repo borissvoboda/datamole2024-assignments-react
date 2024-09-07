@@ -1,6 +1,8 @@
 import { CheckIcon, Cross1Icon } from "@radix-ui/react-icons";
 import React, { useState } from "react";
 import styled from "styled-components";
+import { Button } from "../Button";
+
 const apiUrl = import.meta.env.VITE_API_URL;
 
 import { Input } from "./Input";
@@ -42,12 +44,14 @@ export const Form = (props: FormProps) => {
             }}
         >
             <Input value={inputValue} onValueChange={(value) => setInputValue(value)} />
-            <button type={"submit"} disabled={isNotEmpty}>
+
+            <Button type="submit" disabled={isNotEmpty}>
                 <CheckIcon />
-            </button>
-            <button type={"reset"}>
+            </Button>
+
+            <Button type="reset">
                 <Cross1Icon />
-            </button>
+            </Button>
         </FormStyled>
     );
 };

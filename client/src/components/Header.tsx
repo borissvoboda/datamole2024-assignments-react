@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Form } from "./form";
 import { ListItemType } from "./List";
+import { Button } from "./Button";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 import { addTodo } from "../redux/todosSlice";
@@ -10,10 +11,12 @@ import { useAppDispatch } from ".././redux/hooks";
 
 const StyledDiv = styled.header`
     display: flex;
+    vertical-align: middle;
 
     button {
         all: unset;
 
+        text-align: center;
         width: 25px;
         height: 25px;
 
@@ -69,9 +72,9 @@ export const Header = (props: HeaderProps) => {
     return (
         <StyledDiv>
             <h1>{children}</h1>
-            <button onClick={toggleFormVisibility}>
+            <Button onClickHandler={toggleFormVisibility}>
                 <PlusIcon />
-            </button>
+            </Button>
             {isFormVisible ? <Form onSubmit={onCreateItem} onCancel={toggleFormVisibility} /> : ""}
         </StyledDiv>
     );

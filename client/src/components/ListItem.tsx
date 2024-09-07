@@ -4,6 +4,7 @@ import styled from "styled-components";
 import axios from "axios";
 import { Checkbox } from "./Checkbox";
 import { Form } from "./form";
+import { Button } from "./Button";
 
 import { editTodo, completeTodo } from "../redux/todosSlice";
 import { useAppDispatch } from ".././redux/hooks";
@@ -29,7 +30,7 @@ export type LiteeItemProp = {
     isDone: boolean;
     onItemLabelEdit: (label: string) => void;
     onItemDoneToggle: (isDone: boolean) => void;
-    onItemDelete: () => void;
+    onItemDelete: (id: number) => void;
 };
 
 export const ListItem = (props: LiteeItemProp) => {
@@ -72,12 +73,22 @@ export const ListItem = (props: LiteeItemProp) => {
         return (
             <>
                 <Label>{dynamicLabel}</Label>
-                <button onClick={() => onItemDelete(id)}>
+
+                <Button onClickHandler={() => onItemDelete(id)}>
+                    <TrashIcon />
+                </Button>
+
+                <Button onClickHandler={toggleEditMode}>
+                    <Pencil1Icon />
+                </Button>
+
+                {/* <button onClick={() => onItemDelete(id)}>
                     <TrashIcon />
                 </button>
+
                 <button onClick={toggleEditMode}>
                     <Pencil1Icon />
-                </button>
+                </button> */}
             </>
         );
     };

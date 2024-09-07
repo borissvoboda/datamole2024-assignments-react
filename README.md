@@ -71,7 +71,7 @@ _Fix all other bugs and visual imperfections you find._
         -   after that, items should be sorted by their creation date, descending.
 -   [x] **F8**: Count the todo items
     -   Show a number of the "todo"/"done" items in the `Footer`.
--   [ ] **F9**: `Button` component
+-   [x] **F9**: `Button` component
     -   Create a `Button` component and use it instead of HTML `button` elements.
 
 #### Styling

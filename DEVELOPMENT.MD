@@ -86,3 +86,7 @@ TODO: For the moment it would be impractical not to pass "id" prop to the ListIt
 # 7. Counting todos
 
 Until a bug is found, I consieder it done.
+
+# 8. Creating a custom button
+
+I wasn't sure about the intended desing of all buttons. I guess the exercise was about passing states / maniging the wrapping. Searching for some additional button in redix seems like a waste of time for now, but could be nice.
