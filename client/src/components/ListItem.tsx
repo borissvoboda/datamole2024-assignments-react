@@ -21,10 +21,6 @@ const StaticContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     width: 100%;
-
-    Button {
-        margin-left: auto;
-    }
 `;
 
 const ButtonContainer = styled.div`
@@ -40,10 +36,6 @@ const EditContainer = styled.div`
     margin-left: 15px;
     justify-content: space-between;
     width: 100%;
-
-    Button {
-        margin-left: auto;
-    }
 `;
 
 export type LiteeItemProp = {
