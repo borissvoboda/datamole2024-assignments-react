@@ -16,12 +16,34 @@ const StyledDiv = styled.div`
     align-items: center;
 `;
 
+const StaticContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    Button {
+        margin-left: auto;
+    }
+`;
+
+const ButtonContainer = styled.div`
+    display: flex;
+`;
+
 const Label = styled.label`
     margin-left: 15px;
 `;
 
 const EditContainer = styled.div`
+    display: flex;
     margin-left: 15px;
+    justify-content: space-between;
+    width: 100%;
+
+    Button {
+        margin-left: auto;
+    }
 `;
 
 export type LiteeItemProp = {
@@ -72,23 +94,19 @@ export const ListItem = (props: LiteeItemProp) => {
     const StaticMode = () => {
         return (
             <>
-                <Label>{dynamicLabel}</Label>
+                <StaticContainer>
+                    <Label>{dynamicLabel}</Label>
 
-                <Button onClickHandler={() => onItemDelete(id)}>
-                    <TrashIcon />
-                </Button>
+                    <ButtonContainer>
+                        <Button onClickHandler={() => onItemDelete(id)}>
+                            <TrashIcon />
+                        </Button>
 
-                <Button onClickHandler={toggleEditMode}>
-                    <Pencil1Icon />
-                </Button>
-
-                {/* <button onClick={() => onItemDelete(id)}>
-                    <TrashIcon />
-                </button>
-
-                <button onClick={toggleEditMode}>
-                    <Pencil1Icon />
-                </button> */}
+                        <Button onClickHandler={toggleEditMode}>
+                            <Pencil1Icon />
+                        </Button>
+                    </ButtonContainer>
+                </StaticContainer>
             </>
         );
     };

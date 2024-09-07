@@ -9,6 +9,13 @@ import { Input } from "./Input";
 
 const FormStyled = styled.form`
     display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+`;
+
+const ButtonContainer = styled.div`
+    display: flex;
 `;
 
 type FormProps = {
@@ -44,14 +51,15 @@ export const Form = (props: FormProps) => {
             }}
         >
             <Input value={inputValue} onValueChange={(value) => setInputValue(value)} />
+            <ButtonContainer>
+                <Button type="submit" disabled={isNotEmpty}>
+                    <CheckIcon />
+                </Button>
 
-            <Button type="submit" disabled={isNotEmpty}>
-                <CheckIcon />
-            </Button>
-
-            <Button type="reset">
-                <Cross1Icon />
-            </Button>
+                <Button type="reset">
+                    <Cross1Icon />
+                </Button>
+            </ButtonContainer>
         </FormStyled>
     );
 };

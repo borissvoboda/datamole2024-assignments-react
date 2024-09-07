@@ -90,3 +90,7 @@ Until a bug is found, I consieder it done.
 # 8. Creating a custom button
 
 I wasn't sure about the intended desing of all buttons. I guess the exercise was about passing states / maniging the wrapping. Searching for some additional button in redix seems like a waste of time for now, but could be nice.
+
+# 9. Action buttons align
+
+List items, align in static and edit mode. Just realized, that multiple items can be in "edit", which is bad UX.
