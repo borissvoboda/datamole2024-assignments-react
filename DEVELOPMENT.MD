@@ -82,3 +82,7 @@ I have added todo complition functionality. By now I am almost sure that the fet
 
 I have just realized the restriction "Do not modify the API (props) of the provided components."
 TODO: For the moment it would be impractical not to pass "id" prop to the ListItem. But if all the filtering is done on the List level, then ID may not be needed in the ListItem.
+
+# 7. Counting todos
+
+Until a bug is found, I consieder it done.
