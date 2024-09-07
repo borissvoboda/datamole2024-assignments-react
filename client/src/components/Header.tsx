@@ -72,10 +72,14 @@ export const Header = (props: HeaderProps) => {
     return (
         <StyledDiv>
             <h1>{children}</h1>
-            <Button onClickHandler={toggleFormVisibility}>
-                <PlusIcon />
-            </Button>
-            {isFormVisible ? <Form onSubmit={onCreateItem} onCancel={toggleFormVisibility} /> : ""}
+
+            {isFormVisible ? (
+                <Form onSubmit={onCreateItem} onCancel={toggleFormVisibility} />
+            ) : (
+                <Button onClickHandler={toggleFormVisibility}>
+                    <PlusIcon />
+                </Button>
+            )}
         </StyledDiv>
     );
 };
