@@ -39,7 +39,7 @@ Using the provided UI components, implement the following modifications, bugfixe
 
 -   [ ] **B1**: `List` content
     -   Fix the content alignment of the non-empty `List` component.
--   [ ] **B2**: `Footer` alignment
+-   [x] **B2**: `Footer` alignment
     -   Fix the `Layout` component so the `Footer` is always attached to the bottom of the `Layout`.
 
 _Fix all other bugs and visual imperfections you find._

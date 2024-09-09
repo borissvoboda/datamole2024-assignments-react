@@ -98,3 +98,7 @@ List items, align in static and edit mode. Just realized, that multiple items ca
 # 10. Action buttons visibility
 
 Action buttons visibility was don via css and styled components.
+
+# 11. Footer at the bottom
+
+Adding `flex: 1` to the List, meaning it will stretch to the empty place.

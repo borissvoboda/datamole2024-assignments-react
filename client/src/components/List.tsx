@@ -9,6 +9,7 @@ const apiUrl = import.meta.env.VITE_API_URL;
 const StyledDiv = styled.div`
     display: flex;
     flex-direction: column;
+    flex: 1;
 `;
 
 export type ListItemType = {
