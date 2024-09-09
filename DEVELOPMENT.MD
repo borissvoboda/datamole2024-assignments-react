@@ -106,3 +106,7 @@ Adding `flex: 1` to the List, meaning it will stretch to the empty place.
 # 12. Delete Todo with Redux and Axios in List
 
 Refactoring: Deleting todo now with Redux, Axios and in List (which, I believe, is more in line with the no-props-changing-policy).
+
+# B1 - INSTRUCTIONS UNCLEAR
+
+I couldn't figure out, what means "B1: `List` content - Fix the content alignment of the non-empty `List` component."
