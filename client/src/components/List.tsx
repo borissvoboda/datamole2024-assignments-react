@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { ListItem } from "./ListItem";
-import { selectTodos, setTodos } from "../redux/todosSlice";
+import { selectTodos, setTodos, deleteTodo } from "../redux/todosSlice";
 import { useAppSelector, useAppDispatch } from ".././redux/hooks";
+import axios from "axios";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -36,23 +37,13 @@ export const List = () => {
             });
     }, []);
 
-    const onItemDelete = async (id) => {
-        try {
-            const response = await fetch(`${apiUrl}/items/${id}`, {
-                method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
-
-            if (response.ok) {
-                setItems((prevItems) => prevItems.filter((item) => item.id !== id));
-            } else {
-                setError(`Error: ${response.status} ${response.statusText}`);
-            }
-        } catch (err) {
-            setError(`Network Error: ${err.message}`);
-        }
+    const onItemDelete = (id: number) => {
+        axios
+            .delete(`${apiUrl}/items/${id}`)
+            .then((response) => {
+                dispatch(deleteTodo(id));
+            })
+            .catch((error) => console.error(error));
     };
 
     // TODO:

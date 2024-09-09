@@ -102,3 +102,7 @@ Action buttons visibility was don via css and styled components.
 # 11. Footer at the bottom
 
 Adding `flex: 1` to the List, meaning it will stretch to the empty place.
+
+# 12. Delete Todo with Redux and Axios in List
+
+Refactoring: Deleting todo now with Redux, Axios and in List (which, I believe, is more in line with the no-props-changing-policy).
