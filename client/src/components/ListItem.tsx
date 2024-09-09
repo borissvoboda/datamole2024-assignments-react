@@ -14,6 +14,7 @@ const apiUrl = import.meta.env.VITE_API_URL;
 const StyledDiv = styled.div`
     display: flex;
     align-items: center;
+    padding-top: 2px;
 `;
 
 const StaticContainer = styled.div`
