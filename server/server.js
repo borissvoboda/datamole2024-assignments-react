@@ -13,6 +13,27 @@ server.use((req, res, next) => {
     next();
 });
 
+server.patch("/done/:id", (req, res) => {
+    const items = router.db.get(`items`);
+    const selectedItem = items.find({ id: Number(req.params.id) }).value();
+    if (!selectedItem) {
+        return res.status(404).json({ error: "Item not found" });
+    }
+
+    const updatedItem = {
+        ...selectedItem,
+        isDone: true,
+        finishedAt: Date.now(),
+    };
+
+    items
+        .find({ id: Number(req.params.id) })
+        .assign(updatedItem)
+        .write();
+
+    return res.status(200).json(updatedItem);
+});
+
 // Use default router
 server.use(router);
 server.listen(3000, () => {

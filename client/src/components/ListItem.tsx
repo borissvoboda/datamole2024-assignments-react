@@ -83,14 +83,25 @@ export const ListItem = (props: LiteeItemProp) => {
     };
 
     const itemDoneToggle = (e: boolean) => {
-        axios
-            .patch(`${apiUrl}/items/${id}`, { isDone: e })
-            .then((response) => {
-                dispatch(completeTodo(response.data));
-                setIsDone(e);
-                console.log(response.data);
-            })
-            .catch((error) => console.error(error));
+        if (e) {
+            axios
+                .patch(`${apiUrl}/done/${id}`)
+                .then((response) => {
+                    dispatch(completeTodo(response.data));
+                    setIsDone(e);
+                    console.log(response.data);
+                })
+                .catch((error) => console.error(error));
+        } else {
+            axios
+                .patch(`${apiUrl}/items/${id}`, { isDone: e })
+                .then((response) => {
+                    dispatch(completeTodo(response.data));
+                    setIsDone(e);
+                    console.log(response.data);
+                })
+                .catch((error) => console.error(error));
+        }
     };
 
     const StaticMode = () => {

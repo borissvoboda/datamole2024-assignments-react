@@ -97,7 +97,7 @@ List items, align in static and edit mode. Just realized, that multiple items ca
 
 # 10. Action buttons visibility
 
-Action buttons visibility was don via css and styled components.
+Action buttons visibility was done via css and styled components.
 
 # 11. Footer at the bottom
 
@@ -107,6 +107,17 @@ Adding `flex: 1` to the List, meaning it will stretch to the empty place.
 
 Refactoring: Deleting todo now with Redux, Axios and in List (which, I believe, is more in line with the no-props-changing-policy).
 
-# B1 - INSTRUCTIONS UNCLEAR
+# 13. B1 - INSTRUCTIONS UNCLEAR
 
 I couldn't figure out, what means "B1: `List` content - Fix the content alignment of the non-empty `List` component."
+
+# 14. S1 - Custom edpoint (DONE items) - I WOULD NOT CONSIDER THIS PART AS SUCCESS
+
+I have implemented a custom endpoint. I had to consult ChatGPT; I couldn't find relevant information in a documentation in a reasonable time.
+It was clear to me, that I should create a separate endpoint under server.[verb], but it was not clear, how to access another array without creating a new "done" array.
+I am not sure about the .assign and .write.
+I prefer to understand the code I am using...
+Moreover, the task only mentioned isdone - true. I used this endopoint only to mark a task as done.
+For marking it back, I have kept the previous endpoint.
+
+Another thing: I presume that `onItemDoneToggle` was suppose to work in List. It is not clear to me how the proper ListItem (id) would be identified, if `onItemDoneToggle` is to pass only the boolean value. I guess there is some trivial way to do this.
