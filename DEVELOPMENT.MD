@@ -121,3 +121,11 @@ Moreover, the task only mentioned isdone - true. I used this endopoint only to m
 For marking it back, I have kept the previous endpoint.
 
 Another thing: I presume that `onItemDoneToggle` was suppose to work in List. It is not clear to me how the proper ListItem (id) would be identified, if `onItemDoneToggle` is to pass only the boolean value. I guess there is some trivial way to do this.
+
+# 15. CODA
+
+I was unable to finish the project within the given limits (temporal or restriction-wise). I consider would consider it `mostly done` for my personal purposes and personal growth. After 5 hours I have stopped tracking my time spent and then it took me several more hours (multiple pauses between the runs). Even without the other responsibilities I had, the task would have taken me longer than 6 hours.
+
+More improvements definitely could be made, at least with the visual style.
+The usage of redux is highly questionable.
+The restrictions were not respected.
