@@ -2,7 +2,6 @@ import { PlusIcon } from "@radix-ui/react-icons";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Form } from "./form";
-import { ListItemType } from "./List";
 import { Button } from "./Button";
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -30,6 +29,10 @@ const StyledDiv = styled.header`
     }
 `;
 
+const StyledH1 = styled.h1`
+    width: 100%;
+`;
+
 type HeaderProps = {
     children: React.ReactNode;
     onItemAdd: (label: string) => void;
@@ -46,7 +49,7 @@ export const Header = (props: HeaderProps) => {
         setIsFormVisible((prev) => !prev);
     };
 
-    const onCreateItem = async (inputValue) => {
+    const onCreateItem = async (inputValue: string) => {
         try {
             const response = await fetch(`${apiUrl}/items`, {
                 method: "POST",
@@ -72,7 +75,7 @@ export const Header = (props: HeaderProps) => {
 
     return (
         <StyledDiv>
-            <h1>{children}</h1>
+            <StyledH1>{children}</StyledH1>
 
             {isFormVisible ? (
                 <Form onSubmit={onCreateItem} onCancel={toggleFormVisibility} />
